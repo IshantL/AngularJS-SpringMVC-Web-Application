@@ -1,0 +1,150 @@
+
+<div ng-init="showData()">
+
+
+	<form autocomplete="off">
+
+		<div id="exportable">
+
+			<table class="table table-striped " border=1>
+				<tr>
+					<td align="right">Search By :</td>
+					<td><select ng-model="queryBy">
+							<option value="$"></option>
+							<option value="">--Search--</option>
+							<option value="clientnames">Client Name</option>
+							<option value="servicetype">Service Type</option>
+							<option value="taskstat">Task Status</option>
+							<option value="filenumber">File/Folder No</option>
+							<option value="taskassigneename">Task Assignee Name</option>
+							<option value="taskassignedname">Task Assigned Name</option>
+					</select></td>
+					<td align="right">Search :</td>
+					<td><input ng-model="query[queryBy]" /></td>
+					<td>items per page: <input type="number" min="1"
+						class="form-control" ng-model="pageSize">
+					</td>
+					<td>
+						<button ng-click="exportData()">DOWNLOAD REPORT</button>
+					</td>
+
+				</tr>
+
+			</table>
+
+			<table class="table table-striped " border=1>
+
+				<tr>
+
+					<td><b>Client Name</td>
+					<td><b>Service Type</td>
+					<td><b>Task Status</td>
+					<td><b>File/Folder No</td>
+					<td><b>Task Assignee Name</td>
+					<td><b>Task Assigned Name</td>
+					<td><b>Task Assigned Date</td>
+					<td><b>Task Due Date</td>
+					<td><b>Task Completed Date</td>
+					<td><b>Task Comments</td>
+
+					<!-- <div ng-hide="myVarHide1"> -->
+					<td ng-hide="myVarHide1"><b>Fee Charged</td>
+					<td ng-hide="myVarHide1"><b>Fee Received</td>
+					<td ng-hide="myVarHide1"><b>Fee Outstanding</td>
+
+					<!-- </div> -->
+
+				</tr>
+
+				<tr
+					dir-paginate="pc in taskCode | filter:query | itemsPerPage: pageSize"
+					current-page="currentPage">
+					<!--	current-page="currentPage"> -->
+
+
+
+					<!--<td><span ng-hide="pc1.isEditVisible">{{pc.clientid}}</span> <input
+					type="text" ng-model="pc.clientid" ng-show="pc1.isEditVisible" 
+					disable=""></td>  -->
+
+					<!--	<td><span ng-hide="pc1.isEditVisible">{{pc.clientid}}</span> <input
+					type="text" ng-model="pc.clientid" ng-show="pc1.isEditVisible"></td> -->
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.clientnames}}</span>
+						<input type="text" ng-model="pc.clientnames"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.servicetype}}</span>
+						<input type="text" ng-model="pc.servicetype"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.taskstat}}</span> <input
+						type="text" ng-model="pc.taskstat" ng-show="pc1.isEditVisible"></td>
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.filenumber}}</span>
+						<input type="text" ng-model="pc.filenumber"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.taskassigneename}}</span>
+						<input type="text" ng-model="pc.taskassigneename"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.taskassignedname}}</span>
+						<input type="text" ng-model="pc.taskassignedname"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.taskassigneddte}}</span>
+						<input type="text" ng-model="pc.taskassigneddte"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.taskduedte}}</span>
+						<input type="text" ng-model="pc.taskduedte"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.taskcompletedte}}</span>
+						<input type="text" ng-model="pc.taskcompletedte"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td><span ng-hide="pc1.isEditVisible">{{pc.taskcomments}}</span>
+						<input type="text" ng-model="pc.taskcomments"
+						ng-show="pc1.isEditVisible"></td>
+
+					<!-- <div ng-hide="myVarHide1"> -->
+					<td ng-hide="myVarHide1"><span ng-hide="pc1.isEditVisible">{{pc.feecharged}}</span>
+						<input type="text" ng-model="pc.feecharged"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td ng-hide="myVarHide1"><span ng-hide="pc1.isEditVisible">{{pc.feereceived}}</span>
+						<input type="text" ng-model="pc.feereceived"
+						ng-show="pc1.isEditVisible"></td>
+
+					<td ng-hide="myVarHide1"><span ng-hide="pc1.isEditVisible">{{pc.feeoutstanding}}</span>
+						<input type="text" ng-model="pc.feeoutstanding"
+						ng-show="pc1.isEditVisible"></td>
+
+					<!-- </div> -->
+
+				</tr>
+
+
+				<tr>
+					<td colspan="10" ng-hide="myVarHide1"></td>
+					<td ng-hide="myVarHide1"><strong> {{feechargedtotal()}} </strong></td>
+					<td ng-hide="myVarHide1"><strong> {{feereceivedtotal() }} </strong></td>
+					<td ng-hide="myVarHide1"><strong> {{feeoutstandingtotal() }} </strong></td>
+				</tr>
+
+			</table>
+
+			<div class="other-controller">
+				<div class="text-center">
+					<dir-pagination-controls boundary-links="true"
+						on-page-change="pageChangeHandler(newPageNumber)"
+						template-url="partialPages/dirPagination.tpl.html">
+					</dir-pagination-controls>
+				</div>
+			</div>
+
+		</div>
+	</form>
+</div>

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SimplyOffice | New Client Details</title>
+
+<link rel="stylesheet" href="css/standardize.css">
+<link rel="stylesheet" href="css/newclient-grid.css">
+<link rel="stylesheet" href="css/newclient.css">
+
+</head>
+
+<body class="body page-main clearfix">
+	<form>
+
+		<p class="text text-1">Client Details:</p>
+		<p class="text text-2">
+			Client Name:<span class="required">*</span>
+		</p>
+		<input class="_input _input-1" placeholder="Enter Client Name"
+			ng-model="pc.ClientName" type="text" name="ClientName">
+
+		<p class="text text-3">PAN No:</p>
+		<input class="_input _input-2" placeholder="Enter Client PAN No"
+			ng-model="pc.ClientPanno" type="text" name="ClientPanno">
+
+		<p class="text text-4">Client Contact Number:</p>
+		<input class="_input _input-3" placeholder="Enter Client Contact No"
+			ng-model="pc.ClientCntNo" type="text" name="ClientCntNo">
+
+		<p class="text text-5">Email Id:</p>
+		<input class="_input _input-4" placeholder="Enter Client EmailId"
+			ng-model="pc.ClientEmailId" type="text" name="ClientEmailId">
+
+		<p class="text text-6">Comments:</p>
+		<textarea class="_input _input-5" ng-model="pc.ClientComments"
+			name="ClientComments">mm/dd/yy: More Client Information/Status</textarea>
+
+		<p class="text text-7">Task Details:</p>
+		<p class="text text-8">
+			Service Type:<span class="required">*</span>
+		</p>
+
+		<select class="select1" ng-model="pc.ServiceType">
+			<option value="">--Select ServiceType--</option>
+			<option value="Accounting">Accounting</option>
+			<option value="Audit">Audit</option>
+			<option value="AnnualFilling">Annual Filling</option>
+			<option value="ConsultationServices">Consultation Services</option>
+			<option value="GST">GST</option>
+			<option value="IncomeTaxReturn">I-T Return</option>
+			<option value="Miscellaneous Activities">Miscellaneous
+				Activities</option>
+			<option value="Profession Tax">Profession Tax</option>
+			<option value="ROC">ROC</option>
+			<option value="SalesTax">Sales Tax</option>
+			<option value="ServiceTax">Service Tax</option>
+			<option value="TDS">TDS</option>
+		</select>
+
+		<p class="text text-9">
+			Assignee Name:<span class="required">*</span>
+		</p>
+		<input class="_input _input-7" placeholder="Enter Task Assignee Name"
+			ng-model="pc.TaskAssigneeName" type="text" name="TaskAssigneeName">
+
+		<p class="text text-10">
+			Task Due Date:<span class="required">*</span>
+		</p>
+		<input class="_input _input-8" placeholder="Enter Task Due Date Name"
+			ng-model="pc.TaskDueDte" type="text" name="TaskDueDte">
+
+		<p class="text text-11">
+			Assigned Name:<span class="required">*</span>
+		</p>
+		<input class="_input _input-9" placeholder="Enter Task Assigned Name"
+			ng-model="pc.TaskAssignedName" type="text" name="TaskAssignedName">
+
+		<p class="text text-12">
+			Task Assigned Date:<span class="required">*</span>
+		</p>
+		<input class="_input _input-10" placeholder="Enter Task Assigned Date"
+			ng-model="pc.TaskAssignedDte" type="text" name="TaskAssignedDte">
+
+		<p class="text text-13">
+			Task Completed Date:<span class="required">*</span>
+		</p>
+		<input class="_input _input-11"
+			placeholder="Enter Task Completed Date" ng-model="pc.TaskCompleteDte"
+			type="text" name="TaskCompleteDte">
+
+		<p class="text text-14">
+			Fee Charged:<span class="required">*</span>
+		</p>
+		<input class="_input _input-12" placeholder="Enter Fee Charged"
+			ng-model="pc.FeeCharged" type="text" name="FeeCharged">
+
+		<p class="text text-15">
+			Fee Received:<span class="required">*</span>
+		</p>
+		<input class="_input _input-13" placeholder="Enter Fee Received"
+			ng-model="pc.FeeReceived" type="text" name="FeeReceived"> <input
+			class="_button _button-1" type="submit" ng-click="addPromoCode(pc)"
+			value="Add New Client">
+
+	</form>
+
+</body>
+</html>

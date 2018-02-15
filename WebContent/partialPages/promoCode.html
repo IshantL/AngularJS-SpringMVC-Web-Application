@@ -1,0 +1,95 @@
+<head>
+<style>
+ input.ng-invalid {
+	background-color: #ffcccc;
+	color: blue;
+} 
+
+input.ng-valid {
+	background-color: #e6e6e6;
+	color: blue;
+}
+</style>
+</head>
+<form name="myForm">
+<body align="center">
+<h3>PromoCode Generation</h3><br>
+<table>
+<tr><td><div class="alert alert-success" ng-show="showLabel" style="margin-bottom:0px;width: 434px;">
+PromoCode added successfully !! 
+</div>
+<br>
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Ticket Name  :</b></span>
+
+<select  name="ticket" ng-model="pc.ticketName" ng-change="link(pc,tickets)" title="Select ticket name" autofocus>
+
+<option ng-repeat="option in tickets" value="{{option.ticketName}}" required>{{option.ticketName}}</option>
+<option value="">Select Ticket</option>
+</select>
+<span style="color:red" ng-show="myForm.ticket.$dirty && myForm.ticket.$invalid">Select service</span>
+
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Promotion Type:</b></span>
+<input type="text" name="promotion" ng-model="pc.promotionType"  title="Enter valid promotion type" placeholder="Enter Promotion Type" required/>
+<span style="color:red" ng-show="myForm.promotion.$touched && myForm.promotion.$invalid">promotionType is required.</span>
+
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Discount Access :</b></span>
+<input type="radio" name="discount" ng-model="pc.discountAccess" value="coded" ng-click="generate(pc)"> Coded discount
+ <input type="radio" name="discount" ng-model="pc.discountAccess"  value="public"> Public Discount
+ <span style="color:red"  ng-show="myForm.pubdiscount.$touched && myForm.pubdiscount.$invalid"></span>
+ <span style="color:red"  ng-show="myForm.discount.$touched && myForm.discount.$invalid">Please select one</span>
+<br>
+<span ng-show="pc.discountAccess == 'coded'" class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Code :</b></span>
+<input type="text" name="row_password"  ng-show="pc.discountAccess == 'coded'"  ng-model="pc.code" readonly />
+<span style="color:red"  ng-show="myForm.row_password.$touched && myForm.row_password.$invalid">Please select one</span>
+
+<span ng-show="pc.discountAccess == 'public'" class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Name of Public Discount :</b></span>
+<input type="text"  ng-show="pc.discountAccess == 'public'" name="pubdiscount" ng-model="pc.namePublicDiscount" placeholder="enter Public Discount" required/>
+<span style="color:red"  ng-show="myForm.pubdiscount.$touched && myForm.pubdiscount.$invalid"> Public discount name is mandatory</span>
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Discount per ticket (%) :</b></span>
+<input type="number" name="discounts" min="0" max="100" title="Discount should be less than 100%" ng-model="pc.discountPerTicket" placeholder="Enter Discount Per Ticket" required/>
+<span style="color:red" ng-show="myForm.discounts.$touched && myForm.discounts.$invalid">Discount should be less than 100</span>
+
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Uses per Offer :</b></span>
+<input type="number" name="offer" min="1" max="1000" ng-model="pc.usesPerOffer" title="Enter valid number of uses for offer" placeholder="Enter Uses Per Offer" required/>
+<span style="color:red"  ng-show="myForm.offer.$touched && myForm.offer.$invalid">Insert numeric value</span>
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Start Date :</b></span>
+<input type="date"  name="std" ng-model="pc.startDateTime" title="Set date " pattern="[01-31]{1,2}[/]{1}[01-12]{1,2}[/]{1}[2016-2050]{1,4}" placeholder="Enter Date" required/>
+<span style="color:red"  ng-show="myForm.std.$touched && myForm.std.$invalid">Select proper date</span>
+
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Ticket Type:</b></span>
+
+<input type="text" ng-model="pc.ticketType" readonly required/>
+<br>
+
+<input class = "btn btn-primary"  style="padding: 10px 12px" type="button" ng-show="pc.discountAccess == 'coded'" class="button" value="Change Code" ng-disabled="myForm.$invalid" ng-click="generate(pc)" />
+
+<button class = "btn btn-primary" style="padding: 10px 12px" ng-disabled="!pc.ticketName || !pc.promotionType || !pc.startDateTime || !pc.usesPerOffer || !pc.discountPerTicket || !pc.discountAccess " data-toggle="modal"  data-target="#example">Add PromoCode</button>
+
+  <div id="example" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Confirmation</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to add a new PromoCode ?</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="addPromoCode(pc)">Save changes</button>
+  </div>
+</div></td><td><img src="content/images/promocode.jpg" align="right" alt="promocode" width="80%" height="80%"></td></tr>
+</table>
+ 
+</form>
+</body>

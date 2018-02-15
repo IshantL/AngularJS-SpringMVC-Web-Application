@@ -1,0 +1,75 @@
+<form autocomplete="off">
+	<h3 style="line-height: 20px">Attendee Booked Details Page {{
+		currentPage }}</h3>
+
+	<button ng-click="exportData()">DOWNLOAD REPORT</button>
+	<br> <br>
+	<div id="exportable">
+		<table class="table table-striped " border=1>
+			<tr>
+				<td align="right">Search By :</td>
+				<td><select ng-model="queryBy">
+						<option value="$"></option>
+						<option value="eventName">Name of the Event</option>
+						<option value="ticketName">Name of the Ticket</option>
+				</select></td>
+				<td align="right">Search :</td>
+				<td><input ng-model="query[queryBy]" /></td>
+				<td>items per page: <input type="number" min="1" max="100"
+					class="form-control" ng-model="pageSize">
+				</td>
+			</tr>
+
+		</table>
+
+		<table class="table table-striped " border=1 align="left">
+
+
+			<td><b>First Name </td>
+			<td><b>Last Name</td>
+			<td><b>Email Id </td>
+			<td><b>Contact No </td>
+			<td><b>Event Name </td>
+			<td><b>Ticket Name</td>
+			<td><b>Ticket Price </td>
+
+
+
+
+			</tr>
+
+			<tr
+				dir-paginate="atd in attendee | filter:query | itemsPerPage: pageSize"
+				current-page="currentPage">
+
+
+
+				<td>{{atd.firstName}}</td>
+
+				<td>{{atd.lastName}}</td>
+
+				<td>{{atd.email}}</td>
+
+				<td>{{atd.contactNo}}</td>
+
+				<td>{{atd.eventName}}</td>
+
+				<td>{{atd.ticketName}}</td>
+
+				<td>{{atd.ticketPrice}}</td>
+
+
+
+
+			</tr>
+		</table>
+		<div class="other-controller">
+			<div class="text-center">
+				<dir-pagination-controls boundary-links="true"
+					on-page-change="pageChangeHandler(newPageNumber)"
+					template-url="partialPages/dirPagination.tpl.html">
+				</dir-pagination-controls>
+			</div>
+		</div>
+	</div>
+</form>

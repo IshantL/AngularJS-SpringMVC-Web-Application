@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SimplyOffice | New Client Details</title>
+
+<link rel="stylesheet" href="css/standardize.css">
+<link rel="stylesheet" href="css/newclient-grid.css">
+<link rel="stylesheet" href="css/newclient.css">
+
+</head>
+
+<body class="body page-main clearfix">
+	<form>
+
+		<p class="text text-1">Client Details:</p>
+		<p class="text text-2">
+			Client Name:<span class="required">*</span>
+		</p>
+		<input class="_input _input-1" placeholder="Enter Client Name"
+			ng-model="pc.clientname" type="text" name="clientname" required
+			autofocus>
+
+
+		<p class="text text-3">PAN No:</p>
+		<input class="_input _input-2" placeholder="Enter Client PAN No"
+			ng-model="pc.clientpanno" type="text" name="clientpanno" autofocus>
+
+		<p class="text text-4">
+			Client Contact Number:<span class="required">*</span>
+		</p>
+		<input class="_input _input-3" placeholder="Enter Client Contact No"
+			ng-model="pc.clientcntno" name="clientcntno" type="text" required
+			autofocus>
+
+		<p class="text text-5">Email Id:</p>
+		<input class="_input _input-2" placeholder="Enter Client EmailId"
+			ng-model="pc.clientemailid" type="text" name="clientemailid"
+			autofocus>
+
+
+	<p class="text text-6">
+			File/Folder Name:<span class="required">*</span>
+		</p>
+
+	   <input class="_input _input-3" type="number" min="1"
+			placeholder="Enter File/Folder Number" ng-model="pc.clientfilenumber"
+			name="clientfilenumber" autofocus required /> <span
+			ng-show="clientfilenumber.$dirty && clientfilenumber.$error.required"></span> 
+
+
+		<p class="text text-6">Comments:</p>
+		<textarea class="_input _input-6" ng-model="pc.clientcomments"
+			name="clientcomments"
+			placeholder="YYYY-MM-DD: More Client Information/Client Status"
+			autofocus></textarea> 
+
+		<!--  	<input class="_button _button-1" type = "submit"
+			ng-click="addclientCode(pc)" value = "Add New Client"
+			ng-disabled="$invalid"> -->
+
+		<button class="_button _button-1" ng-click="addclient(pc)"
+			ng-disabled="$invalid">Add New Client</button>
+
+		<div class="alert alert-danger" role="alert" ng-show="errormsg">{{errormsg}}</div>
+		<div class="alert alert-success" role="alert" ng-show="successmsg">{{successmsg}}</div>
+
+	</form>
+
+</body>
+</html>

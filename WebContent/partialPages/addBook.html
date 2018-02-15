@@ -1,0 +1,50 @@
+<form>
+<div><br><br><h3 >Add Books</h3></div>
+
+<div class="alert alert-success" ng-show="showLabel" style="margin-bottom:0px;width: 434px;">
+ Books added successfully !! 
+</div>
+<br>
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Tittle:</b></span>
+<input type="text" ng-model="book.tittle" placeholder="enter Tittle" required/>
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Author:</b></span>
+<input type="text" ng-model="book.author" placeholder="enter Author" required/>
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Publisher's Name :</b></span>
+<input type="text" ng-model="book.publisher" placeholder="enter Publisher" required/>
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Language :</b></span>
+<input type="text" ng-model="book.language" placeholder="enter language" required/>
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Category :</b></span>
+<select ng-model="book.category">
+<option value="">--select Category--</option>
+<option value="Maths">Maths</option>
+<option value="Science">Science</option>
+<option value="English">English</option>
+<option value="History">History</option>
+</select><br>
+
+
+<button class = "btn btn-primary" style="padding: 10px 12px" data-toggle="modal"  data-target="#example">Add Book</button>
+
+  <div id="example" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Confirmation</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to add a new Book ?</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="addBook(book)">Save changes</button>
+  </div>
+</div>
+<br>
+<br>
+
+</form>

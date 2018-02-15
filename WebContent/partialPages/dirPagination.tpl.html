@@ -1,0 +1,18 @@
+<table ><tr class="pagination" ng-if="1 < pages.length || !autoHide">
+    <td colspan="2" ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 }">
+        <a href="" ng-click="setCurrent(1)">&laquo;</a>
+    </td>
+    <td ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }">
+        <a href="" ng-click="setCurrent(pagination.current - 1)">&lsaquo;</a>
+    </td>
+    <td ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+        <a href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+    </td>
+
+    <td ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+        <a href="" ng-click="setCurrent(pagination.current + 1)">&rsaquo;</a>
+    </td>
+    <td ng-if="boundaryLinks"  ng-class="{ disabled : pagination.current == pagination.last }">
+        <a href="" ng-click="setCurrent(pagination.last)">&raquo;</a>
+    </td>
+</tr></table>

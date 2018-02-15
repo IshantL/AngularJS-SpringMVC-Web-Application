@@ -1,0 +1,57 @@
+
+<form autocomplete="off">
+	<h3 style="line-height: 20px">View Events and Ticket Details</h3>
+
+	<table class="table table-striped " border=1>
+
+		<tr>
+			<!-- <td><input type="checkbox" ng-model="isGlobalVisible" ng-change="globalEdit(isGlobalVisible)" /></td> -->
+			<td><b>Event Name</td>
+			<td><b>Event Location</td>
+			<td><b>Starting On</td>
+			<td><b>Event Description </td>
+			<td><b>Event Organizer</td>
+			<td><b>Event Status</td>
+			<td><b>View Ticket</td>
+			<td><b>View Ticket</td>
+			<td><b>Book Ticket</td>
+		</tr>
+
+		<tr
+			ng-repeat="evt in objEvt|filter : dataFilter|orderBy : evt.eventname">
+			<!-- <td><input type="checkbox" ng-model="evt.isEditVisible" ng-click="toggleevent(evt,$index)" /></td> -->
+
+			<td><span ng-hide="evt.isEditVisible">{{evt.eventName}}</span> <input
+				type="text" ng-model="evt.eventName" ng-show="evt.isEditVisible"></td>
+
+			<td><span ng-hide="evt.isEditVisible">{{evt.eventLocation}}</span>
+				<input type="text" ng-model="evt.eventLocation"
+				ng-show="evt.isEditVisible"></td>
+
+			<td><span ng-hide="evt.isEditVisible">{{evt.startDate}}</span> <input
+				type="date" ng-model="evt.startDate" ng-show="evt.isEditVisible"></td>
+
+			<td><span ng-hide="evt.isEditVisible">{{evt.eventDescription}}</span>
+				<input type="text" ng-model="evt.eventDescription"
+				ng-show="evt.isEditVisible" autocomplete="off"></td>
+
+			<td><span ng-hide="evt.isEditVisible">{{evt.eventOrganizer}}</span>
+				<input type="text" ng-model="evt.eventOrganizer"
+				ng-show="evt.isEditVisible" autocomplete="off"></td>
+
+			<td><span ng-hide="evt.isEditVisible">{{evt.eventStatus}}</span>
+				<input type="text" ng-model="evt.eventStatus"
+				ng-show="evt.isEditVisible" autocomplete="off"></td>
+
+			<td><span ng-hide="cust.isEditVisible">{{evt.ticketName}}</span>
+
+				<!-- 
+<td> <a href="#/ticket/{{evt.ticketId}}">View Ticket</a></td> -->
+			<td><a href="#/ticket">View Ticket</href></td>
+			<td><a href="#/addAttendee"><input type="button"
+					value="Book" class="btn btn-danger" ng-click=""></a></td>
+		</tr>
+	</table>
+
+
+</form>

@@ -1,0 +1,111 @@
+
+<div ng-init="showData()">
+
+	<form autocomplete="off">
+
+		<div class="alert alert-danger" role="alert" ng-show="errormsg">{{errormsg}}</div>
+		<div class="alert alert-success" role="alert" ng-show="successmsg">{{successmsg}}</div>
+
+		<table class="table table-striped " border=1>
+			<tr>
+				<td align="right">Search By :</td>
+				<td><select ng-model="queryBy">
+						<option value="$"></option>
+						<option value="">-------Search User Details-------</option>
+						<option value="username">User Name</option>
+						<option value="username">User Name-Id</option>
+						<option value="usercntno">User Contact No</option>
+						<option value="useremailid">User EmailId</option>
+						<option value="useraddress">User Address</option>
+						<option value="userrole">User Role</option>
+				</select></td>
+				<td align="right">Search :</td>
+				<td><input ng-model="query[queryBy]" /></td>
+				<td>items per page: <input type="number" min="1"
+					class="form-control" ng-model="pageSize">
+				</td>
+			</tr>
+
+		</table>
+
+		<table class="table table-striped " border=1>
+
+			<tr>
+				<td></td>
+				<td><b>User Name</td>
+				<td><b>User Name-Id</td>
+				<td><b>User Password</td>
+				<td><b>User Contact No</td>
+				<td><b>User EmailId</td>
+				<td><b>User Address</td>
+				<td><b>User Role</td>
+				<td><b>User Created Date</td>
+				<td><b>User Updated Date</td>
+			</tr>
+
+			<tr
+				dir-paginate="pc in userCode | filter:query | itemsPerPage: pageSize"
+				current-page="currentPage">
+				<!-- <tr ng-repeat = "pc in userCode | filter:query"> -->
+				<td><input type="checkbox" ng-model="pc1.isEditVisible"
+					ng-click="toggleCustomer(pc,$index)" /></td>
+
+				<!--		<td><span ng-hide="pc1.isEditVisible">{{pc.userid}}</span> <input
+					type="text" ng-model="pc.userid" ng-show="pc1.isEditVisible"></td> -->
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.username}}</span> <input
+					type="text" ng-model="pc.username" ng-show="pc1.isEditVisible"></td>
+				
+				<td><span ng-hide="pc1.isEditVisible">{{pc.usernameid}}</span> <input
+					type="text" ng-model="pc.usernameid" ng-show="pc1.isEditVisible"></td>	
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.userpwd}}</span> <input
+					type="text" ng-model="pc.userpwd" ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.usercntno}}</span> <input
+					type="text" ng-model="pc.usercntno" ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.useremailid}}</span>
+					<input type="text" ng-model="pc.useremailid"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.useraddress}}</span>
+					<input type="text" ng-model="pc.useraddress"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.userrole}}</span> 
+				<select
+					name="userrole" type="text" ng-model="pc.userrole"
+					ng-show="pc1.isEditVisible" required>
+						<option value="Admin">Admin</option>
+						<option value="User">User</option>
+				</select></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.usercrtdate}}</span>
+					<input type="text" ng-model="pc.usercrtdate"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.userupddate}}</span>
+					<input type="text" ng-model="pc.userupddate"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><input type="button" value="Update" class="btn btn-warning"
+					ng-disabled="!pc1.isEditVisible"
+					ng-click="updateuserCode($index,pc)"></td>
+				<td><input type="button" value="Delete" class="btn btn-danger"
+					ng-disabled="!pc1.isEditVisible"
+					ng-click="deleteuserCode($index,pc.userid)"></td>
+			</tr>
+
+		</table>
+
+	</form>
+	<div class="other-controller">
+		<div class="text-center">
+			<dir-pagination-controls boundary-links="true"
+				on-page-change="pageChangeHandler(newPageNumber)"
+				template-url="partialPages/dirPagination.tpl.html">
+			</dir-pagination-controls>
+		</div>
+	</div>
+</div>

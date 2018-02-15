@@ -1,0 +1,78 @@
+<form name="myForm">
+<body align="center">
+<h3>PromoCode Generation</h3><br>
+
+
+<div class="alert alert-success" ng-show="showLabel" style="margin-bottom:0px;width: 434px;">
+PromoCode added successfully !! 
+</div>
+<br>
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Ticket Name  :</b></span>
+
+<select  name="ticket" ng-model="pc.ticketName" ng-change="link(pc,tickets)">
+<span ng-show="myForm.ticket.$touched && myForm.ticket.$invalid"> please select one</span>
+<option ng-repeat="option in tickets" value="{{option.ticketName}}">{{option.ticketName}}</option>
+</select>
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Promotion Type:</b></span>
+<input type="text" name="promotion" ng-model="pc.promotionType" placeholder="Enter Promotion Type" required/>
+<span style="color:red" ng-show="myForm.promotion.$touched && myForm.promotion.$invalid">promotionType is required.</span>
+
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Discount Access :</b></span>
+<input type="radio" name="discount" ng-model="pc.discountAccess" value="coded" ng-click="generate(pc)"> Coded discount
+ <input type="radio" name="discount" ng-model="pc.discountAccess"  value="public"> Public Discount
+ <span style="color:red"  ng-show="myForm.discount.$touched && myForm.discount.$invalid"> please select one</span>
+<br>
+<span ng-show="pc.discountAccess == 'coded'" class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Code :</b></span>
+<input type="text" name="row_password"  ng-show="pc.discountAccess == 'coded'"  ng-model="pc.code" readonly />
+<span style="color:red"  ng-show="myForm.row_password.$touched && myForm.row_password.$invalid"> please select one</span>
+
+<span ng-show="pc.discountAccess == 'public'" class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Name of Public Discount :</b></span>
+<input type="text"  ng-show="pc.discountAccess == 'public'" ng-model="pc.namePublicDiscount" placeholder="enter Public Discount" required/>
+
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Discount per ticket (%) :</b></span>
+<input type="text" name="discount" min="0" max="100" ng-model="pc.discountPerTicket" placeholder="enter Discount Per Ticket" required/>
+<span style="color:red" ng-show="myForm.discount.$touched && myForm.discount.$invalid">Discount should be less than 100</span>
+
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Uses per Offer :</b></span>
+<input type="text" name="offer" min="0" max="999" ng-model="pc.usesPerOffer" placeholder="Enter Uses Per Offer" required/>
+<span style="color:red"  ng-show="myForm.offer.$touched && myForm.offer.$invalid">insert numeric value</span>
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Start Date and Time : :</b></span>
+<input type="date"  name="std" ng-model="pc.startDateTime"  placeholder="Enter Date" required/>
+<span style="color:red"  ng-show="myForm.std.$touched && myForm.std.$invalid"> please select one</span>
+
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Ticket Type:</b></span>
+
+<input type="text" ng-model="pc.ticketType" readonly required/>
+<br>
+
+<input class = "btn btn-primary"  style="padding: 10px 12px" type="button" ng-show="pc.discountAccess == 'coded'" class="button" value="Change Code" ng-click="generate(pc)" />
+
+<button class = "btn btn-primary" style="padding: 10px 12px"  data-toggle="modal"  data-target="#example">Add PromoCode</button>
+
+  <div id="example" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Confirmation</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to add a new PromoCode ?</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="addPromoCode(pc)">Save changes</button>
+  </div>
+</div>
+ 
+</form>
+</body>

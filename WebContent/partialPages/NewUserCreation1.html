@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SimplyOffice | New User Details</title>
+
+<link rel="stylesheet" href="css/standardize.css">
+<link rel="stylesheet" href="css/newuser-grid.css">
+<link rel="stylesheet" href="css/newuser.css">
+
+</head>
+
+<body class="body page-newuser clearfix">
+	<form>
+		<p class="text text-1">User Details:</p>
+		
+		
+		<p class="text text-2">
+			User Name:<span class="required">*</span>
+		</p>
+		<input class="_input _input-1" type="text" name="username"
+			placeholder="Enter Username" ng-model="pc.username" required /> <span
+			ng-show="username.$dirty && username.$error.required"></span>
+			
+		<p class="text text-2">
+			User Name Id:<span class="required">*</span>
+		</p>
+		<input class="_input _input-1" type="text" name="usernameid"
+			placeholder="Enter Userid" ng-model="pc.usernameid" required /> <span
+			ng-show="username.$dirty && username.$error.required"></span>	
+
+		<p class="text text-3">
+			Password:<span class="required">*</span>
+		</p>
+		<input class="_input _input-2" type="text" name="password"
+			placeholder="Enter Password" ng-model="pc.userpwd" required /> <span
+			ng-show="password.$dirty && password.$error.required"></span>
+
+		<p class="text text-4">Contact No:</p>
+		<input class="_input _input-3" type="text" name="contactno"
+			placeholder="Enter User Contact No" ng-model="pc.usercntno">
+
+		<p class="text text-5">Email ID:</p>
+		<input class="_input _input-4" type="text" name="emailid"
+			placeholder="Enter User EmailId" ng-model="pc.useremailid">
+
+		<p class="text text-6">Address:</p>
+		<textarea class="_input _input-5" name="Address"
+			placeholder="Enter User Address" ng-model="pc.useraddress"></textarea>
+
+		<p class="text text-7">
+			Role:<span class="required">*</span>
+		</p>
+		<select class="select1" name="userrole" ng-model="pc.userrole"
+			required>
+			
+			<option value="">-----Select User Role-----</option>
+			<option value="Admin">Admin</option>
+			<option value="User">User</option>
+		</select>
+		
+		<button class="_button _button-3" ng-click="adduser(pc)"
+			ng-disabled="$invalid">Add New User</button>
+
+		<div class="alert alert-danger" role="alert" ng-show="errormsg">{{errormsg}}</div>
+		<div class="alert alert-success" role="alert" ng-show="successmsg">{{successmsg}}</div>
+
+	</form>
+</body>
+</html>

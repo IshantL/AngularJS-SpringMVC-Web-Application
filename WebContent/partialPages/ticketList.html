@@ -1,0 +1,34 @@
+
+<h3>Ticket Details</h3>
+
+
+<table>
+<tr>
+<td><span class="label" style="line-height:30px;border-radius:1px;width:130px"><b>Event Name : </b></span></td>
+<td><span class="label" style="line-height:30px;border-radius:1px;width:130px"><b>Ticket Name : </b></span></td>
+<td><span class="label" style="line-height:30px;border-radius:1px;width:130px"><b>Ticket Type : </b></span></td>
+<td><span class="label" style="line-height:30px;border-radius:1px;width:130px"><b>Quantity Avialable: </b></span></td>
+<td><span class="label" style="line-height:30px;border-radius:1px;width:130px"><b>Price : </b></span></td>
+<td><span class="label" style="line-height:30px;border-radius:1px;width:130px"><b>Ticket Start Date :</b></span></td>
+<td><span class="label" style="line-height:30px;border-radius:1px;width:130px"><b>Ticket End Date :</b></span></td>
+<td><span class="label" style="line-height:30px;border-radius:1px;width:130px"><b>Tickets Per Person :</b></span></td>
+<td><span class="label" style="line-height:30px;border-radius:1px;width:130px"><b>Tickets Status :</b></span></td>
+</tr>
+<tr  ng-repeat = "evt in objEvt">
+
+<td><span class="label label-warning" style="line-height:30px;border-radius:1px;width:130px"><b> {{evt.eventName}}</b></span></td>
+<td><span class="label label-warning" style="line-height:30px;border-radius:1px;width:130px"><b> {{evt.ticketName}}</b></span></td>
+<td><span class="label label-warning" style="line-height:30px;border-radius:1px;width:130px"><b> {{evt.ticketType}}</b></span></td><br>
+<td><span class="label label-warning" style="line-height:30px;border-radius:1px;width:130px"><b> {{evt.ticketQuantity}}</b></span></td>
+<td><span class="label label-warning" style="line-height:30px;border-radius:1px;width:130px"><b> {{evt.ticketPrice}}</b></span></td>
+<td><span class="label label-warning" style="line-height:30px;border-radius:1px;width:130px"><b> {{evt.startDate}}</b></span></td>
+<td><span class="label label-warning" style="line-height:30px;border-radius:1px;width:130px"><b> {{evt.ticketEndDate}}</b></span></td>
+<td><span class="label label-warning" style="line-height:30px;border-radius:1px;width:130px"><b> {{evt.ticketPerPerson}}</b></span></td>
+<td><span class="label label-warning" style="line-height:30px;border-radius:1px;width:130px"><b> {{evt.ticketStatus}}</b></span></td>
+
+</tr>
+</table>
+<br>
+
+<span><a href="#/viewTicket"><input type="button" value="Back to Events" class = "btn btn-danger"  ng-click=""></href></span>
+<span><a href="#/addAttendee"><input type="button" value="Book" class = "btn btn-danger"  ng-click=""></href></span>

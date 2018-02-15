@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SimplyOffice | New Task Details</title>
+
+<link rel="stylesheet" href="css/standardize.css">
+<link rel="stylesheet" href="css/newtask-grid.css">
+<link rel="stylesheet" href="css/newtask.css">
+<link rel="stylesheet"
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+</head>
+<body class="body page-main clearfix">
+	<form>
+
+		<p class="text text-1">Task Details:</p>
+		<p class="text text-2">
+			Client Name:<span class="required">*</span>
+		</p>
+
+		<input class="_input _input-1" type="text"
+			placeholder="Enter Client Name" ng-model="pc.clientnames"
+			name="clientnames" autofocus required>
+
+		<p class="text text-3">
+			Service Type:<span class="required">*</span>
+		</p>
+
+		<select class="select1" name="servicetype" ng-model="pc.servicetype"
+			required>
+			<option value="">---------Select ServiceType---------</option>
+			<option value="Accounting">Accounting</option>
+			<option value="Audit">Audit</option>
+			<option value="AnnualFilling">Annual Filling</option>
+			<option value="ConsultationServices">Consultation Services</option>
+			<option value="GST">GST</option>
+			<option value="IncomeTaxReturn">I-T Return</option>
+			<option value="Miscellaneous Activities">Miscellaneous
+				Activities</option>
+			<option value="Profession Tax">Profession Tax</option>
+			<option value="ROC">ROC</option>
+			<option value="SalesTax">Sales Tax</option>
+			<option value="ServiceTax">Service Tax</option>
+			<option value="TDS">TDS</option>
+		</select>
+
+
+		<p class="text text-4">
+			Task Status:<span class="required">*</span>
+		</p>
+
+		<select class="select" name="taskstat" ng-model="pc.taskstat" required>
+			<option value="">---------Select TaskStatus---------</option>
+			<option value="inprogress">Inprogress</option>
+			<option value="pending">Pending</option>
+			<option value="stuck">Stuck</option>
+			<option value="completed">Completed</option>
+		</select>
+
+		<p class="text text-5">
+			Assignee Name:<span class="required">*</span>
+		</p>
+
+		<input class="_input _input-4" type="text"
+			placeholder="Enter Task Assignee Name" ng-model="pc.taskassigneename"
+			name="taskassigneename" autofocus required /> <span
+			ng-show="taskassigneename.$dirty && taskassigneename.$error.required"></span>
+
+		<p class="text text-6">
+			Assigned Name:<span class="required">*</span>
+		</p>
+
+		<input class="_input _input-5" type="text"
+			placeholder="Enter Task Assigned Name" ng-model="pc.taskassignedname"
+			name="taskassignedname" autofocus required /> <span
+			ng-show="taskassignedname.$dirty && taskassignedname.$error.required"></span>
+
+		<p class="text text-7">
+			Task Assigned Date:<span class="required">*</span>
+		</p>
+
+		<input class="_input _input-6" type="text"
+			placeholder="Enter Task Assigned Date YYYY-MM-DD"
+			ng-model="pc.taskassigneddte" name="taskassigneddte"
+			ng-model="datePicker" autofocus required datepicker /> <span
+			ng-show="taskassigneddte.$dirty && taskassigneddte.$error.required"></span>
+
+		<p class="text text-8">Task Due Date:</p>
+
+		<input class="_input _input-7" type="text"
+			placeholder="Enter Task Due Date YYYY-MM-DD" ng-model="pc.taskduedte"
+			ng-model="datePicker" name="taskduedate" autofocus datepicker />
+
+		<p class="text text-9">Task Completed Date:</p>
+
+		<input class="_input _input-8" type="text"
+			placeholder="Enter Task Completed Date YYYY-MM-DD"
+			ng-model="pc.taskcompletedte" name="taskcompletedte"
+			ng-model="datePicker" autofocus datepicker />
+
+		<!-- <p class="text text-9">
+			Task Completed Date:<span class="required">*</span>
+		</p>
+
+		<input class="_input _input-8" type="text"
+			placeholder="Enter Task Completed Date DD-MM-YYYY"
+			ng-model="pc.taskcompletedte" name="taskcompletedte"
+			ng-model="datePicker" autofocus required datepicker /> <span
+			ng-show="taskcompletedte.$dirty && taskcompletedte.$error.required"></span> -->
+
+
+		<!-- <div id="wrapper" ng-app="myApp">
+
+			<input type="text" ng-model="datePicker" datepicker />
+		</div> -->
+
+		<p class="text text-13">Task Comments:</p>
+
+		<textarea class="_input _input-12" ng-model="pc.taskcomments"
+			name="taskcomments" placeholder="YYYY-MM-DD: Task Status" autofocus></textarea>
+
+		<div ng-hide="myVarHide">
+			<p class="text text-9">Fee Charged:</p>
+
+			<input class="_input _input-8" type="text"
+				placeholder="Enter Fee Charged" ng-model="pc.feecharged"
+				name="feecharged" autofocus>
+
+			<!--  <p class="text text-9">
+			Fee Charged:<span class="required">*</span>
+			</p>	
+	
+			<input class="_input _input-8" type="number"
+			placeholder="Enter Fee Charged" ng-model="pc.feecharged"
+			name="feecharged" autofocus required /> <span
+			ng-show="feecharged.$dirty && feecharged.$error.required"></span> -->
+
+			<p class="text text-8">Fee Received:</p>
+
+			<input class="_input _input-7" type="text"
+				placeholder="Enter Fee Received" ng-model="pc.feereceived"
+				name="feereceived" autofocus>
+		</div>
+
+
+		<button class="_button _button-1" ng-click="addtask(pc)"
+			ng-disabled="$invalid">Create New Task</button>
+
+
+
+		<div class="alert alert-danger" role="alert" ng-show="errormsg">{{errormsg}}</div>
+		<div class="alert alert-success" role="alert" ng-show="successmsg">{{successmsg}}</div>
+
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<form autocomplete="off">
+<h3 style="line-height:20px">FeedBack Page {{ currentPage }}</h3>
+ <button ng-click="exportData()">DOWNLOAD FEEDBACK</button>
+ <br>
+ <br>
+ <div id="exportable">
+ <table class="table table-striped " border=1>
+<tr>
+            <td align="right">Search By :</td>
+            <td>
+                <select ng-model="queryBy">
+                    <option value="$"></option>
+                    <option value="eventName">Name of the Event</option>
+                    <option value="eventOrganiser">Event Organizer</option>
+                    <option value="eventLocation">Event Location</option>
+                </select>   
+            </td>
+            <td align="right">Search :</td>
+            <td><input ng-model="query[queryBy]" /></td>
+            <td >items per page:
+              <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+           </td>
+        </tr>           
+        
+    </table>
+ 
+<table class="table table-striped " border=1 align="left">
+
+
+<td> <b>Name of the Event </td>
+<td> <b>Date of the Event</td>
+<td> <b>Event Organizer </td>
+<td> <b>Program Content </td>
+<td> <b>Was the Program Presentation beneficial to  you?  </td>
+<td> <b>Did you recieve the information as you expected? </td>
+<td> <b>Was sufficient time given for the presentation? </td>
+<td> <b>Event Location</td>
+<td> <b>Comment And Suggestion </td>
+
+
+
+</tr>
+<tr dir-paginate="feedback in feedback | filter:query | itemsPerPage: pageSize" current-page="currentPage">
+
+
+
+<td>{{feedback.eventName}}
+</td>
+
+<td>{{feedback.eventDate}}
+</td>
+
+<td>{{feedback.eventOrganiser}}
+</td>
+
+<td>{{feedback.programContent}}
+</td>
+
+<td>{{feedback.programBenefit}}
+</td>
+
+<td>{{feedback.infoAsExpected}}
+</td>
+
+<td>{{feedback.eventSufficient}}
+</td>
+
+<td>{{feedback.eventLocation}}
+</td>
+
+<td>{{feedback.eventComment}}
+</td>
+
+
+</tr>
+</table>
+<div class="other-controller">
+<div class="text-center">
+<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="partialPages/dirPagination.tpl.html">
+</dir-pagination-controls>
+      </div>  </div>
+</div>
+</form>

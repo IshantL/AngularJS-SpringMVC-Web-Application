@@ -1,0 +1,113 @@
+
+<form name="myForm" class="col-md-6 col-md-offset-3">
+<div><br><br><h3 >Feedback Form</h3></div>
+<style>
+input.ng-invalid
+{
+background-color:#ffcccc;
+color:blue;
+}
+
+input.ng.valid
+{
+color:blue;
+background-color:#008000;
+}</style>
+
+
+
+<div class="alert alert-success" ng-show="showLabel" style="margin-bottom:0px;width: 434px;">
+ Feedback Delivery Succesfully !! 
+</div>
+<br>
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:300px"><b>Name of the Event:</b></span>
+<select id="eventname" name="Event" ng-model="feedback.eventName" >
+<option ng-repeat="option in objEvt" value="{{option.eventName}}">{{option.eventName}}</option>
+</select>
+<span style="color:red" ng-show="myForm.Event.$touched && myForm.Event.$invalid"><b>Please enter the name of Event</b></span>
+<br> 
+
+<br>
+<span class="label" style="line-height:30px;border-radius:1px;width:300px"><b>Date of the Event:</b></span>
+
+<input type="date"  name="date" ng-model="feedback.eventDate" placeholder="enter Author" required>
+<span style="color:red" ng-show="myForm.date.$touched && myForm.date.$invalid"><b>Please enter date</b></span> 
+<br>
+<br>
+
+<span class="label" style="line-height:30px;border-radius:1px;width:300px"><b>Event Organizer :</b></span>
+<input type="text" name="Organizer" ng-model="feedback.eventOrganiser" placeholder="enter Organiser" maxlength="10" required>
+
+<span style="color:red" ng-show="myForm.Organizer.$touched && myForm.Organizer.$invalid"><b>Please enter event organizer</b></span>
+<br>
+<br>
+<form >
+<span class="label" style="line-height:30px;border-radius:1px;width:300px"><b>Program Content:</b></span>
+
+  <input type="radio" name="time" ng-model = "feedback.programContent" value = "poor"> Poor
+  <input type="radio" name="time" ng-model = "feedback.programContent" value = "average"> Average
+   <input type="radio" name="time" ng-model = "feedback.programContent" value = "Good"> Good
+    <input type="radio" name="time" ng-model = "feedback.programContent" value = "verygood"> Very Good
+    <input type="radio" name="time" ng-model = "feedback.programContent" value = "excellent"> Excellent
+
+  <span style="color:red" ng-show="myForm.time.$touched && myForm.time.$invalid"><b>Select One</b></span>
+</form>
+
+
+<form >
+<span class="label" style="line-height:30px;border-radius:1px;width:300px"><b>Was the Program Presentation beneficial to you? :</b></span>
+
+  <input type="radio" name="time" ng-model = "feedback.programBenefit" value = "yes"> Yes
+  <input type="radio" name="time" ng-model = "feedback.programBenefit" value = "no"> No
+
+  <span style="color:red" ng-show="myForm.time.$touched && myForm.time.$invalid"><b>Select One</b></span>
+</form>
+<!-- <input type="text"  name="benefits" ng-model="feedback.programBenefit" placeholder="enter program content" required>
+<span style="color:red" ng-show="myForm.benefits.$touched && myForm.benefits.$invalid"><b>*</b></span> -->
+
+<form >
+<span class="label" style="line-height:30px;border-radius:1px;width:300px"><b>Did you recieve the information as you expected? :</b></span>
+
+
+  <input type="radio" name="time" ng-model = "feedback.infoAsExpected" value = "yes"> Yes
+  <input type="radio" name="time" ng-model = "feedback.infoAsExpected" value = "no"> No
+
+  <span style="color:red" ng-show="myForm.time.$touched && myForm.time.$invalid"><b>Select One</b></span>
+</form>
+
+
+<form >
+<span class="label" style="line-height:30px;border-radius:1px;width:300px"><b>Was sufficient time given for the presentation? :</b></span>
+
+
+  <input type="radio" name="time" ng-model = "feedback.eventSufficient" value = "yes"> Yes
+  <input type="radio" name="time" ng-model = "feedback.eventSufficient" value = "no"> No
+
+  <span style="color:red" ng-show="myForm.time.$touched && myForm.time.$invalid"><b>Select One</b></span>
+</form>
+
+<form >
+<span class="label" style="line-height:30px;border-radius:1px;width:300px"><b>Event Location :</b></span>
+
+<input type="radio" name="time" ng-model = "feedback.eventLocation" value = "poor"> Poor
+  <input type="radio" name="time" ng-model = "feedback.eventLocation" value = "average"> Average
+   <input type="radio" name="time" ng-model = "feedback.eventLocation" value = "Good"> Good
+    <input type="radio" name="time" ng-model = "feedback.eventLocation" value = "verygood"> Very Good
+    <input type="radio" name="time" ng-model = "feedback.eventLocation" value = "excellent"> Excellent
+  <span style="color:red" ng-show="myForm.time.$touched && myForm.time.$invalid"><b>Select One</b></span>
+</form>
+
+
+
+
+<span class="label" style="line-height:30px;border-radius:1px;width:300px"><b>Comment And Suggestion :</b></span>
+ <textarea   name="comment" ng-model="feedback.eventComment" placeholder="Enter text here..."></textarea>
+ <span style="color:red" ng-show="myForm.comment.$touched && myForm.comment.$invalid"><b>Please give comments</b></span>
+<br>
+
+
+<button ng-disabled="!feedback.eventName || !feedback.eventDate || !feedback.eventOrganiser || !feedback.programContent || !feedback.programBenefit || !feedback.infoAsExpected || !feedback.eventSufficient || !feedback.eventLocation || !feedback.eventComment" ng-click="addFeedback(feedback)">Add Feedback</button>
+
+
+</form>

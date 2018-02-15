@@ -1,0 +1,103 @@
+<hr>
+
+<h3 style="line-height: 20px">PromoCodes Page {{ currentPage }}</h3>
+<br>
+
+<div ng-init="showData()">
+
+	<form autocomplete="off">
+
+		<table class="table table-striped " border=1>
+			<tr>
+				<td align="right">Search By :</td>
+				<td><select ng-model="queryBy">
+						<option value="$"></option>
+						<option value="ticketName">Ticket Name</option>
+						<option value="discountAccess">Discount Access</option>
+						<option value="namePublicDiscount">Public Discount Name</option>
+				</select></td>
+				<td align="right">Search :</td>
+				<td><input ng-model="query[queryBy]" /></td>
+				<td>items per page: <input type="number" min="1" max="100"
+					class="form-control" ng-model="pageSize">
+				</td>
+			</tr>
+
+		</table>
+
+		<table class="table table-striped " border=1>
+
+			<tr>
+				<td><input type="checkbox" ng-model="isGlobalVisible"
+					ng-change="globalEdit(isGlobalVisible)" /></td>
+				<td><b>Ticket Name</td>
+				<td><b>Promotion Type</td>
+				<td><b>Discount Access</td>
+				<td><b>Code</td>
+				<td><b>Public Discount Name</td>
+				<td><b>Discount Per Ticket </td>
+				<td><b>Uses Per Offer </td>
+				<td><b>Start Date Time </td>
+				<td><b>Update </td>
+				<td><b>Delete</td>
+			</tr>
+			<tr
+				dir-paginate="pc in promoCode | filter:query | itemsPerPage: pageSize"
+				current-page="currentPage">
+				<!-- <tr ng-repeat = "pc in promoCode | filter:query"> -->
+				<td><input type="checkbox" ng-model="pc1.isEditVisible"
+					ng-click="toggleCustomer(pc,$index)" /></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.ticketName}}</span>
+					<input type="text" ng-model="pc.ticketName"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.promotionType}}</span>
+					<input type="text" ng-model="pc.promotionType"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.discountAccess}}</span>
+					<input type="text" ng-model="pc.discountAccess"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.code}}</span> <input
+					type="text" ng-model="pc.code" ng-show="pc1.isEditVisible"
+					autocomplete="off"></td>
+
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.namePublicDiscount}}</span>
+					<input type="text" ng-model="pc.namePublicDiscount"
+					ng-show="pc1.isEditVisible" autocomplete="off"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.discountPerTicket}}</span>
+					<input type="text" ng-model="pc.discountPerTicket"
+					ng-show="pc1.isEditVisible" autocomplete="off"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.usesPerOffer}}</span>
+					<input type="text" ng-model="pc.usesPerOffer"
+					ng-show="pc1.isEditVisible" autocomplete="off"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.startDateTime}}</span>
+					<input type="text" ng-model="pc.startDateTime"
+					ng-show="pc1.isEditVisible" autocomplete="off"></td>
+
+				<td><input type="button" value="Update" class="btn btn-warning"
+					ng-disabled="!pc1.isEditVisible"
+					ng-click="updatePromoCode($index,pc)"></td>
+				<td><input type="button" value="Delete" class="btn btn-danger"
+					ng-disabled="!pc1.isEditVisible"
+					ng-click="deletePromoCode($index,pc.promoId)"></td>
+			</tr>
+
+		</table>
+
+	</form>
+	<div class="other-controller">
+		<div class="text-center">
+			<dir-pagination-controls boundary-links="true"
+				on-page-change="pageChangeHandler(newPageNumber)"
+				template-url="partialPages/dirPagination.tpl.html">
+			</dir-pagination-controls>
+		</div>
+	</div>
+</div>

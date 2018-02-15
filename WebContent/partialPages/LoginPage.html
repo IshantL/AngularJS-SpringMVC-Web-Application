@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SimplyOffice | Login</title>
+
+<link rel="stylesheet" href="css/standardize.css">
+<link rel="stylesheet" href="css/login1-grid.css">
+<link rel="stylesheet" href="css/login1.css">
+
+</head>
+
+<body class="body page-main clearfix">
+
+	<form>
+
+		<div class="element element-1"></div>
+
+		<p class="text text-1">
+			Username:<span class="required">*</span>
+		</p>
+		<input class="_input _input-1" placeholder="Enter Username"
+			type="text" name="usernameid" ng-model="user.usernameid" required
+			autofocus />
+
+		<p class="text text-4">
+			Password:<span class="required">*</span>
+		</p>
+		<input class="_input _input-2" placeholder="Enter Password"
+			type="password" name="password" ng-model="user.userpwd" required />
+
+
+		<div class="element element-2"></div>
+		<button class="_button _button-1" ng-click="login(user)"
+			ng-disabled="$invalid">LogIn</button>
+
+		<div class="alert alert-danger" role="alert" ng-show="errormsg">{{errormsg}}</div>
+
+	</form>
+
+</body>
+</html>

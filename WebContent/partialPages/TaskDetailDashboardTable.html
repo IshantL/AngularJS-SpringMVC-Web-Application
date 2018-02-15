@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table class="table table-hover table-striped table-condensed table-bordered ordersTable">
+    <thead>
+        <tr>
+            <th data-ng-click="vm.setOrder('clientname')">Client Name</th>
+            <th data-ng-click="vm.setOrder('clientcntno')">Client Contact Number</th>
+            <th data-ng-click="vm.setOrder('servicetype')">Service Type</th>
+            <th data-ng-click="vm.setOrder('taskstat')">Task Status</th>
+            <th data-ng-click="vm.setOrder('taskassigneename')">Task Assignee Name</th>
+            <th data-ng-click="vm.setOrder('taskassignedname')">Task Assigned Name</th>
+            <th data-ng-click="vm.setOrder('taskassigneddte')">Task Assigned Date</th>
+            <th data-ng-click="vm.setOrder('taskduedte')">Task Due Date</th>
+            <th data-ng-click="vm.setOrder('taskcompletedte')">Task Completed Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-hide="vm.customer.orders || vm.customer.orders.length > 0" class="error">
+            <td colspan="5">
+                <div class="text-center"><strong>No orders found</strong></div>
+            </td>
+        </tr>
+        <tr data-ng-repeat="order in vm.customer.orders | orderBy:vm.orderby:vm.reverse" class="repeat-animation">
+            <td>
+                {{ order.clientname }}
+            </td>
+            <td>
+                {{ order.clientcntno }}
+            </td>
+            <td>
+                {{ order.servicetype }}
+            </td>
+            <td>
+                {{ order.taskstat }}
+            </td>
+            <td>
+                {{ order.taskassigneename }}
+            </td>
+            <td>
+                {{ order.taskassignedname }}
+            </td>
+            <td>
+                {{ order.taskassigneddte | taskassigneddte:'MM/dd/yyyy' }}
+            </td>
+            <td>
+                {{ order.taskduedte | taskduedte:'MM/dd/yyyy' }}
+            </td>
+            <td>
+                {{ order.taskcompletedte | taskcompletedte:'MM/dd/yyyy' }}
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+</body>
+</html>

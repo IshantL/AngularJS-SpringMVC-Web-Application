@@ -1,0 +1,113 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	background-color: rgb(255, 255, 255);
+	font: 400 1em/1.38 Helvetica;
+	color: rgb(0, 0, 0);
+}
+
+.element {
+	float: left;
+}
+
+.required {
+	color: red;
+}
+
+.text {
+	position: relative;
+	float: left;
+	clear: both;
+	width: 25.5820312499%;
+	min-height: 35px;
+	margin-left: 16.79948%;
+	font-size: 1em;
+	color: #49708f;
+}
+
+._button {
+	display: block;
+	position: relative;
+	float: left;
+	clear: both;
+	z-index: 5;
+	width: 25.5833333333%;
+	height: 39px;
+	margin: 52px 0 0 16.79948%;
+	border-radius: 5px;
+	background-color: rgba(0, 41, 255, 0.54);
+	font-size: 1.25em;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.95);
+}
+
+._input {
+	display: block;
+	position: relative;
+	float: left;
+	clear: both;
+	width: 25.5989583333%;
+	height: 52px;
+	margin-left: 16.79948%;
+	padding: 0 10px;
+	border-radius: 5px;
+	border: 1px solid #c6c7cc;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+	background: #fff;
+	font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.element-1 {
+	width: 25.5833333333%;
+	height: 65px;
+	margin: 79px 0 0 16.79948%;
+	background: url('../images/LogoSimplyOffice.jpg')
+		rgba(255, 255, 255, 0.82);
+	background-size: auto auto;
+	background-position: 50% 40%;
+}
+
+.element-2 {
+	width: 39.1666666666%;
+	height: 303px;
+	margin: -206px 0 0 8.4505199999%;
+	background: url('../images/CA-Chartered-Accountant.jpg')
+		rgba(230, 230, 230, 0.59);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	overflow: visible;
+}
+
+.element-2:focus {
+	background-color: rgba(230, 230, 230, 0.26);
+}
+
+.text-1 {
+	z-index: 1;
+	margin-top: 49px;
+}
+
+.text-2 {
+	z-index: 3;
+	margin-top: 26px;
+}
+
+._input-1 {
+	z-index: 2;
+	margin-top: 1px;
+	min-height: 30px;
+	clear: both;
+}
+
+._input-2 {
+	z-index: 4;
+	margin-top: 1px;
+	min-height: 30px;
+	clear: both;
+}
+
+._button-1 {
+	z-index: 5;
+	margin-top: -40px;
+}

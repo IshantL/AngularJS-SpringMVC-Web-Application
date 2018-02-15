@@ -1,0 +1,108 @@
+
+<div ng-init="showData()">
+
+	<form autocomplete="off">
+	
+		<div class="alert alert-danger" role="alert" ng-show="errormsg">{{errormsg}}</div>
+		<div class="alert alert-success" role="alert" ng-show="successmsg">{{successmsg}}</div>
+
+		<table class="table table-striped " border=1>
+			<tr>
+				<td align="right">Search By :</td>
+				<td><select ng-model="queryBy">
+						<option value="">---------Search Client Details----------</option>
+						<option value="$"></option>
+						<option value="clientname">Client Name</option>
+						<option value="clientpanno">Client PAN No</option>
+						<option value="clientcntno">Client Contact No</option>
+						<option value="clientemailid">Client EmailId</option>
+						<option value="clientfilenumber">File/Folder No</option>
+						<option value="clientcrtdte">Client Created Date</option>
+						<option value="clientupddte">Client Updated Date</option>
+				</select></td>
+				<td align="right">Search :</td>
+				<td><input ng-model="query[queryBy]" /></td>
+				<td>items per page: <input type="number" min="1"
+					class="form-control" ng-model="pageSize">
+				</td>
+			</tr>
+
+		</table>
+
+		<table class="table table-striped " border=1>
+
+			<tr>
+				<td></td>
+				<td><b>Client Name</td>
+				<td><b>Client PAN No</td>
+				<td><b>Client Contact No</td>
+				<td><b>Client EmailId</td>
+				<td><b>File/Folder No</td>
+				<td><b>Client Comments</td>
+				<td><b>Client Created Date</td>
+				<td><b>Client Updated Date</td>
+			</tr>
+
+			<tr
+				dir-paginate="pc in clientCode | filter:query | itemsPerPage: pageSize"
+				current-page="currentPage">
+				<!-- <tr ng-repeat = "pc in clientCode | filter:query"> -->
+				<td><input type="checkbox" ng-model="pc1.isEditVisible"
+					ng-click="toggleCustomer(pc,$index)" /></td>
+
+			<!--  	<td><span ng-hide="pc1.isEditVisible">{{pc.clientid}}</span> <input
+					type="text" ng-model="pc.clientid" ng-show="pc1.isEditVisible"></td> -->
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.clientname}}</span>
+					<input type="text" ng-model="pc.clientname"
+					ng-show="pc1.isEditVisible" required></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.clientpanno}}</span>
+					<input type="text" ng-model="pc.clientpanno"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.clientcntno}}</span>
+					<input type="text" ng-model="pc.clientcntno"
+					ng-show="pc1.isEditVisible" required></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.clientemailid}}</span>
+					<input type="text" ng-model="pc.clientemailid"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.clientfilenumber}}</span>
+					<input type="number" min="1" ng-model="pc.clientfilenumber"
+					ng-show="pc1.isEditVisible"></td>
+				
+				<td><span ng-hide="pc1.isEditVisible">{{pc.clientcomments}}</span>
+					<input type="text" ng-model="pc.clientcomments"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.clientcrtdte}}</span>
+					<input type="text" ng-model="pc.clientcrtdte"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.clientupddte}}</span>
+					<input type="text" ng-model="pc.clientupddte"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><input type="button" value="Update" class="btn btn-warning"
+					ng-disabled="!pc1.isEditVisible"
+					ng-click="updateclientCode($index,pc)"></td>
+				<td><input type="button" value="Delete" class="btn btn-danger"
+					ng-disabled="!pc1.isEditVisible"
+					ng-click="deleteclientCode($index,pc.clientid)"></td>
+
+			</tr>
+
+		</table>
+		
+	</form>
+	<div class="other-controller">
+		<div class="text-center">
+			<dir-pagination-controls boundary-links="true"
+				on-page-change="pageChangeHandler(newPageNumber)"
+				template-url="partialPages/dirPagination.tpl.html">
+			</dir-pagination-controls>
+		</div>
+	</div>
+</div>

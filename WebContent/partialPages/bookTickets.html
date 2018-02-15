@@ -1,0 +1,117 @@
+
+<form name="theform">
+<body align="center">
+<h3>Book Tickets</h3><br>
+
+
+<div class="alert alert-success" ng-show="showLabel" style="margin-bottom:0px;width: 434px;">
+Book Tickets successfully !! 
+</div>
+<table><tr><td><table>
+<tr><td>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Event Name</b></span>
+
+<select id="eventname" name="Event" ng-model="book.eventName" ng-change="link(book,objEvt)">
+<option ng-repeat="option in objEvt" value="{{option.eventName}}">{{option.eventName}}</option>
+</select>
+
+<br>
+</td></tr>
+<tr><td>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Ticket Name:</b></span>
+
+<input type="text" id="ticketname"ng-model="book.ticketName" readonly required/>
+</td></tr>
+<tr>
+<td>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Ticket Price:</b></span>
+
+<input type="text" id="ticketprice"ng-model="book.ticketPrice" readonly required/>
+</tr>
+<!-- <tr>
+<td>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Ticket Quantity:</b></span>
+
+<input type="text" ng-model="book.ticketQuantity" readonly required/>
+</tr> -->
+<tr>
+<td>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Ticket Status:</b></span>
+
+<input type="text" ng-model="book.ticketStatus" readonly required/>
+</tr>
+<tr>
+<td>
+<span class="label" style="line-height:30px;border-radius:1px;width:250px"><b>Ticket Type:</b></span>
+
+<input type="text" ng-model="book.ticketType" readonly required/>
+</tr>
+</table></td><td><img src="content/images/book-tickets-online.png" align="right" alt="promocode" ></td></tr></table>
+
+</body>
+
+<h3>Enter  Attendee Details</h3>
+<div>
+    <table class="table">
+        <tr>
+            
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Id</th>
+            <th>Contact No</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+        <tr ng:repeat="item in invoice.items">
+           <td><input id="fn" name="name" type="text" ng:model="item.firstName" pattern="[A-z]{1}[a-z]{1,25}" title="Enter first name" class="input-small" autofocus required>
+            <span style="color:red" ng-show="theform.name.$touched && theform.name.$invalid"><br><b>please enter the valid first name</b></span>
+            </td>           
+             <td><input  id="ln" name="last" type="text" ng:model="item.lastName" pattern="[A-z]{1}[a-z]{1,25}" title="Enter last name" class="input-small" required>
+               <span style="color:red" ng-show="theform.last.$touched && theform.last.$invalid"><br><b>Please enter the valid last name</b></span>
+             </td>           
+             <td><input  id="email" name="email" type="text" ng:model="item.email" pattern="[a-z]{1,25}[@]{1}[a-z]{1,10}[.]{1}[a-z]{1,3}"  title="email-id format should be:- abc@xyz.com" class="input-small" required>
+               <span style="color:red" ng-show="theform.email.$touched && theform.email.$invalid"><br><b>Please enter the valid email</b></span>
+             </td>               
+              <td><input  id="contact" name="mobile" type="text" ng:model="item.mobile" pattern="[7-9]{1}[0-9]{9}" title="Enter your 10 digit mobile number"  class="input-mini" required>
+                <span style="color:red" ng-show="theform.mobile.$touched && theform.mobile.$invalid"><br><b>Please enter the valid contact number</b></span>
+              </td> 
+               <td>{{item.cost | currency}}</td>
+            <!-- <td>{{item.qty * item.cost | currency}}</td> -->
+            <td>
+                [<a href ng:click="removeItem($index)">X</a>]
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><h3>Total:</h3></td>
+            <td><h3>{{total() | currency}}</h3></td>
+            <td><h3>Total Payment :</h3></td>
+           <td><input id="grandtotal" type="text"  readonly></td>
+            <td><input ng-hide="true" id="finaltotal" type="text" ng-model="total()" readonly></td>
+        </tr>
+    </table>
+
+<button class = "btn btn-primary" style="padding: 10px 12px" ng-disabled="!book.eventName" data-toggle="modal"  data-target="#example">Add Attendee</button>
+      <p></p>   <b>Enter PromoCode Here:</b><input  type="text" ng-model="promo.apply" >
+<button class = "btn btn-primary" style="padding: 10px 12px" ng-click="applyPromoCode(promo)" >Apply PromoCode</button>
+
+  <div id="example" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Confirmation</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to add a new Attendee ?</p>
+ 	
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">No</button>
+    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="addItem()">Yes</button>
+  </div>
+</div>
+</div>
+</form>
+ 
+
+
+

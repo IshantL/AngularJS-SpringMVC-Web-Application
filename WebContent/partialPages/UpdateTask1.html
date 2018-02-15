@@ -1,0 +1,174 @@
+<head>
+<link rel="stylesheet"
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+</head>
+
+<div ng-init="showData()">
+
+	<form autocomplete="off">
+
+		<div class="alert alert-danger" role="alert" ng-show="errormsg">{{errormsg}}</div>
+		<div class="alert alert-success" role="alert" ng-show="successmsg">{{successmsg}}</div>
+
+		<table class="table table-striped " border=1>
+			<tr>
+				<td align="right">Search By :</td>
+				<td><select ng-model="queryBy">
+						<option value="$"></option>
+						<option value="">-------Search Task Details-------</option>
+						<option value="clientnames">Client Name</option>
+						<option value="servicetype">Service Type</option>
+						<option value="taskstat">Task Status</option>
+						<option value="taskassigneddte">Task Assigned Date</option>
+						<option value="taskduedte">Task Due Date</option>
+						<option value="taskcompletedte">Task Completed Date</option>
+						<option value="taskassigneename">Task Assignee Name</option>
+						<option value="taskassignedname">Task Assigned Name</option>
+						<option value="taskcrtdte">Task Created Date</option>
+						<option value="taskUpddte">Task Updated Date</option>
+				</select></td>
+				<td align="right">Search :</td>
+				<td><input ng-model="query[queryBy]" /></td>
+				<td>items per page: <input type="number" min="1"
+					class="form-control" ng-model="pageSize">
+				</td>
+			</tr>
+
+		</table>
+
+		<table class="table table-striped " border=1>
+
+			<tr>
+				<td></td>
+				<td><b>Client Name</td>
+				<td><b>Service Type</td>
+				<td><b>Task Status</td>
+				<td><b>Task Assigned Date</td>
+				<td><b>Task Due Date</td>
+				<td><b>Task Completed Date</td>
+				<td><b>Task Assignee Name</td>
+				<td><b>Task Assigned Name</td>
+				<td><b>Task Comments</td>
+				<td><b>Task Created Date</td>
+				<td><b>Task Updated Date</td>
+				<td ng-hide="myVarHide"><b>Fee Charged</td>
+				<td ng-hide="myVarHide"><b>Fee Received</td>
+				<td ng-hide="myVarHide"><b>Fee Outstanding</td>
+			</tr>
+
+			<tr
+				dir-paginate="pc in taskCode | filter:query | itemsPerPage: pageSize"
+				current-page="currentPage">
+				<!-- <tr ng-repeat = "pc in taskCode | filter:query"> -->
+
+				<td><input type="checkbox" ng-model="pc1.isEditVisible"
+					ng-click="toggleCustomer(pc,$index)" /></td>
+
+				<!--	<td><span ng-hide="pc1.isEditVisible">{{pc.clientid}}</span> <input
+					type="text" ng-model="pc.clientid" ng-show="pc1.isEditVisible"></td> -->
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.clientnames}}</span>
+					<input type="text" ng-model="pc.clientnames"
+					ng-show="pc1.isEditVisible" disable=""></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.servicetype}}</span>
+					<!--	<input type="text" ng-model="pc.servicetype"
+					ng-show="pc1.isEditVisible"> --> <select type="text"
+					ng-model="pc.servicetype" ng-show="pc1.isEditVisible" disable="">
+						<option value="Accounting">Accounting</option>
+						<option value="Audit">Audit</option>
+						<option value="AnnualFilling">Annual Filling</option>
+						<option value="ConsultationServices">Consultation
+							Services</option>
+						<option value="GST">GST</option>
+						<option value="IncomeTaxReturn">I-T Return</option>
+						<option value="Miscellaneous Activities">Miscellaneous
+							Activities</option>
+						<option value="Profession Tax">Profession Tax</option>
+						<option value="ROC">ROC</option>
+						<option value="SalesTax">Sales Tax</option>
+						<option value="ServiceTax">Service Tax</option>
+						<option value="TDS">TDS</option>
+				</select></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.taskstat}}</span> <!-- <input
+					type="text" ng-model="pc.taskstat" ng-show="pc1.isEditVisible"> -->
+
+					<select type="text" ng-model="pc.taskstat"
+					ng-show="pc1.isEditVisible">
+						<option value="inprogress">Inprogress</option>
+						<option value="pending">Pending</option>
+						<option value="stuck">Stuck</option>
+						<option value="completed">Completed</option>
+				</select></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.taskassigneddte}}</span>
+					<input type="text" ng-model="pc.taskassigneddte"
+					ng-model="datePicker" ng-show="pc1.isEditVisible" datepicker /></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.taskduedte}}</span>
+					<input type="text" ng-model="pc.taskduedte" ng-model="datePicker"
+					ng-show="pc1.isEditVisible" datepicker /></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.taskcompletedte}}</span>
+					<input type="text" ng-model="pc.taskcompletedte"
+					ng-model="datePicker" ng-show="pc1.isEditVisible" datepicker /></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.taskassigneename}}</span>
+					<input type="text" ng-model="pc.taskassigneename"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.taskassignedname}}</span>
+					<input type="text" ng-model="pc.taskassignedname"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.taskcomments}}</span>
+					<input type="text" ng-model="pc.taskcomments"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.taskcrtdte}}</span>
+					<input type="text" ng-model="pc.taskcrtdte"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td><span ng-hide="pc1.isEditVisible">{{pc.taskupddte}}</span>
+					<input type="text" ng-model="pc.taskupddte"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td ng-hide="myVarHide"><span ng-hide="pc1.isEditVisible">{{pc.feecharged}}</span>
+					<input type="text" ng-model="pc.feecharged"
+					ng-show="pc1.isEditVisible"></td>
+
+				<td ng-hide="myVarHide"><span ng-hide="pc1.isEditVisible">{{pc.feereceived}}</span>
+					<input type="text" ng-model="pc.feereceived"
+					ng-show="pc1.isEditVisible"></td>
+
+				<!-- <td><span ng-hide="pc1.isEditVisible">{{pc.feeoutstanding}}</span> -->
+
+				<td ng-hide="myVarHide"><span ng-hide="pc1.isEditVisible">{{pc.feeoutstanding}}</span>
+					<input type="text" ng-model="pc.feeoutstanding"
+					ng-show="pc1.isEditVisible"></td>
+
+				<!-- Update Task -->
+				<td><input type="button" value="Update" class="btn btn-warning"
+					ng-disabled="!pc1.isEditVisible"
+					ng-click="updatetaskcode($index,pc)"></td>
+
+				<!-- Delete Task -->
+				<td><input type="button" value="Delete" class="btn btn-danger"
+					ng-disabled="!pc1.isEditVisible"
+					ng-click="deletetaskcode($index,pc.taskid)"></td>
+
+			</tr>
+
+		</table>
+
+	</form>
+	<div class="other-controller">
+		<div class="text-center">
+			<dir-pagination-controls boundary-links="true"
+				on-page-change="pageChangeHandler(newPageNumber)"
+				template-url="partialPages/dirPagination.tpl.html">
+			</dir-pagination-controls>
+		</div>
+	</div>
+</div>
